@@ -1,0 +1,30 @@
+---
+- name: Create, check, change and delete test file
+  hosts: my_servers
+  connection: local
+
+  vars:
+    test_file: "{{ ansible_env.HOME }}/test.txt"
+
+  tasks:
+    - name: Create test file
+      shell: echo test_file_content > {{ test_file }}
+
+    - name: Read test file
+      command: cat {{ test_file }}
+      register: file_content
+      changed_when: false
+
+    - name: Show test file content
+      debug:
+        msg: "{{ file_content.stdout }}"
+
+    - name: Change test file content
+      copy:
+        content: "new_file_content\n"
+        dest: "{{ test_file }}"
+
+    - name: Delete test file
+      file:
+        path: "{{ test_file }}"
+        state: absent

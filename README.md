@@ -9,3 +9,4 @@
 ## Лабораторные работы
 
 - [ЛР 1. Loki + Zabbix + Grafana](lab1)
+- [ЛР 2. Ansible + Caddy](lab2)

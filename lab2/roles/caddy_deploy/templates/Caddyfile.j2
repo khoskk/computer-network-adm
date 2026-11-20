@@ -1,0 +1,21 @@
+{{ domain_name }} {
+	root * {{ site_root }}
+	file_server
+
+	header {
+		X-Lab "Ansible + Caddy"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+
+	tls {
+		dns duckdns {{ duckdns_token }}
+		resolvers 1.1.1.1
+	}
+
+	log {
+		output file {{ log.file }}
+		format json
+		level {{ log.level }}
+	}
+}
